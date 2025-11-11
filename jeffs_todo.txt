@@ -1,128 +1,229 @@
+═══════════════════════════════════════════════════════════════════════════════
+                            DIET MACHINE - TODO LIST
+═══════════════════════════════════════════════════════════════════════════════
 
+*******************************************************************************
 * FIXES *
+*******************************************************************************
 
-- [DONE] ✅ browse meals: only dinner category is working - FIXED: Changed .replace('s', '') to .slice(0, -1)
-- [IN PROGRESS] 🔄 create (custom) meal, add ingredient, the unit should show (ie, oz, cup, etc) next to amount box
-- [TBD] ⏳ can we make custom meals and the pre-existing ones the same (or indistinguishable)?  So all meals show the same, and can be edited/manipulated in the same way.
-  * QUESTION: Should we merge the data structures or just unify the UI? Need your input.
-- [TBD] ⏳ pagination of meals and ingredients as the lists can grow to be long for one screen
-  * QUESTION: Items per page preference? 10, 20, or 50? Infinite scroll vs traditional pagination?
+✅ [DONE] Browse meals category filtering
+   └─ FIXED: Changed .replace('s', '') to .slice(0, -1)
+   └─ All categories (breakfast, lunch, dinner, snacks) now work correctly
 
-*******************************************
+✅ [DONE] Unit display in custom meal creation
+   └─ FIXED: Unit now displays dynamically when ingredient is selected
+   └─ Shows "oz", "cup", "serving", etc. next to amount input field
+
+⏳ [IN PROGRESS] Unify custom and pre-existing meals
+   └─ DECISION: Merge data structures - single "Meal" concept
+   └─ Custom meals will appear in main meal browser alongside pre-existing ones
+   └─ All meals will be editable/manipulable in the same way
+
+⏳ [TBD] Pagination for meals and ingredients
+   └─ DECISION: Infinite scroll with frozen column headers
+   └─ Page footer should remain visible without excessive scrolling
+   └─ Headers stay fixed like frozen rows in Excel
+
+
+*******************************************************************************
 * NEW FEATURES *
+*******************************************************************************
 
-- [TBD] ⏳ way to adjust daily/weekly macro targets/goals/budget.  Would be great if user could enter bodyweight/fat%, activity levels, fitness goals (ie strength training, gain muscle, lose weight) with targets.  Note the home page needs to update to reflect current settings.
-  * QUESTION: Which calculation method? (Harris-Benedict, Mifflin-St Jeor, Katch-McArdle?) Should we include TDEE calculator? Age and gender inputs needed?
-  
-- [TBD] ⏳ need a way to save a daily and weekly meal plan for recall later.  So a user can create a weekly plan by adding all the meals, then save it with a name.  Then the plan can be recalled and edited (and possibly resaved to the same or a new name).
-  * IMPLEMENTATION: Will use localStorage with named plan storage
-  
-- [TBD] ⏳ need a way to edit existing ingredients and meals, a button for each item or selection mechanism and then option menu.
-  * IMPLEMENTATION: Add edit modal with form pre-populated with current data
-  
-- [TBD] ⏳ can the cheapest bulk sizes of ingredients and price be added to ingredient data?  For instance dried beans may come in a 1lb bag for a certain price, track that for grocery list creation.
-  * QUESTION: Should this be manual entry or part of the price scraper?
-  
-- [TBD] ⏳ when creating a custom meal, it would be great if you could add a new ingredient without having to cancel and do it with the 'add ingredient' button, meaning add that functionality to the form (but keep the button '+ Add Ingredient' as well)
-  * IMPLEMENTATION: Add "+ New Ingredient" button within meal form that opens inline form
-  
-- [TBD] ⏳ can we add a unit converter to the custom meal creation as well as a tool accessible from the ingredient list?  It would be great to specify different units from the ones defined in ingredients data and convert automatically.
-  * QUESTION: Include volume-to-weight conversions? Common conversions: oz↔g, cup↔ml, tbsp↔tsp
-  
-- [TBD] ⏳ create a way to export/import ingredients and meals
-  * QUESTION: Format preference? JSON, CSV, or both?
-  
-- [TBD] ⏳ implement the price scraper script, can be run locally.  It should also find the (bulk) sizes, like 2lb box, 48oz tub, etc -- with the best price point.
-  * NOTE: Script template already exists, needs Puppeteer implementation
-  
-- [TBD] ⏳ is there a way to just copy a recipe as text, say from a website, and then enter it into a text box, and have the system figure out how to add the meal and ingredients as needed?  It should calculate the macro nutrients per serving as well (you would need to enter number of servings for the recipe).  Maybe it could even divide the servings so you can see the per serving amounts?  Maybe utilize an AI?  Is there a prompt I can use here that would do that for me?
-  * RESEARCH COMPLETE: See RESEARCH_FINDINGS.md - AI recipe parser is feasible with OpenAI API (~$0.01-0.10 per recipe)
-  
-- [TBD] ⏳ a way to save an image of the meal/ingredient
-  * QUESTION: Storage option preference? Base64 in localStorage vs external hosting?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HIGH PRIORITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⏳ [TBD] Adjustable macro targets/goals/budget
+   └─ DECISION: Simple manual entry of daily macro/calorie targets
+   └─ Skip complex calculators (Harris-Benedict, etc.) for now
+   └─ Home page must update to reflect current settings
+   └─ Fields: Protein (g), Carbs (g), Fat (g), Calories, Weekly Budget ($)
+
+⏳ [TBD] Save/Load meal plans
+   └─ Save daily and weekly meal plans with custom names
+   └─ Recall and edit saved plans
+   └─ Option to save as new name or overwrite existing
+   └─ IMPLEMENTATION: localStorage with named plan storage
+
+⏳ [TBD] Edit existing ingredients and meals
+   └─ Add edit button/menu for each item
+   └─ Modal with form pre-populated with current data
+   └─ Apply to both ingredients and meals
+
+⏳ [TBD] Inline ingredient creation in meal form
+   └─ Add "+ New Ingredient" button within meal creation form
+   └─ Opens inline form without canceling meal creation
+   └─ Keep existing "+ Add Ingredient" button as well
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MEDIUM PRIORITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⏳ [TBD] Bulk ingredient pricing system
+   └─ DESIGN: Plugin architecture for multiple store sources
+   └─ CURRENT: Support walmart.com only
+   └─ FUTURE: Easy to add other stores via plugins
+   └─ Manual entry always available
+   └─ Multiple package sizes per ingredient (1lb, 2lb, 5lb, etc.)
+   └─ Set "preferred" size with dropdown selector in editor
+   └─ Shopping lists show preferred size by default
+
+⏳ [TBD] Unit converter tool
+   └─ Include volume-to-weight conversions (e.g., 1 cup flour = 120g)
+   └─ Common conversions: oz↔g, cup↔ml, tbsp↔tsp
+   └─ Accessible from custom meal creation
+   └─ Standalone tool accessible from ingredient list
+
+⏳ [TBD] Export/Import functionality
+   └─ FORMAT: JSON
+   └─ Export entire database (ingredients + meals)
+   └─ Import entire database
+   └─ FUTURE: Individual item export/import
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LOW PRIORITY / FUTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⏳ [TBD] Price scraper implementation
+   └─ NOTE: Script template exists, needs Puppeteer implementation
+   └─ Find bulk sizes (2lb box, 48oz tub, etc.)
+   └─ Identify best price points
+   └─ Run locally
+
+⏳ [TBD] AI Recipe Parser
+   └─ ACTION: Create documentation with code examples and setup instructions
+   └─ Create AI prompt for recipe parsing to JSON structure
+   └─ Output format compatible with ingredient/meal import
+   └─ Cost: ~$0.01-0.10 per recipe with OpenAI API
+   └─ See: RESEARCH_FINDINGS.md
+
+⏳ [TBD] Meal/Ingredient images
+   └─ DECISION: Postponed for future implementation
+   └─ Add necessary provisions to facilitate later implementation
+   └─ Consider: Base64 in localStorage vs external hosting
 
 
-*******************************************
-* QUESTIONS/RESEARCH *
+*******************************************************************************
+* RESEARCH QUESTIONS - COMPLETED *
+*******************************************************************************
 
-- [DONE] ✅ what are the database limitations when using cloudflare pages free tier?
-  * ANSWER: See RESEARCH_FINDINGS.md - Static sites have no database, but localStorage works. For multi-user: D1 (500MB free), KV (1GB free)
-  
-- [DONE] ✅ what would be required to turn this into a multi-user system?  A new server model (not cloudflare) or paid tier?  Options?
-  * ANSWER: See RESEARCH_FINDINGS.md - Can stay on Cloudflare! Options: D1 database + Workers + KV storage. Cost: $0.50-5/month for 100 users
-  
-- [DONE] ✅ what would be required to have a suggestion feature?  AI?  I want to be able to have it make suggestions, for instance, to complete a meal plan that is missing some meals, or needs snacks added to hit daily targets.  It should work by the day or by the week.  Maybe a way to set ingredient/meal preferences with some kind of rating?  Also way to set daily/weekly limits on ingredients?
-  * ANSWER: See RESEARCH_FINDINGS.md - Multiple options: Rule-based (FREE), Client-side ML (FREE), Cloud AI ($30/month). Recommended: Hybrid approach starting with rule-based
-  
-- [DONE] ✅ along the thinking of the last idea, maybe expand the concept to a meal plan 'manager' feature, that according to your targets and preferences, can warn about macros being too low/too high, grocery cost getting too high, ingredient limits, etc.  What would design and implementation options be?
-  * ANSWER: See RESEARCH_FINDINGS.md - Design options provided with dashboard, timeline, and card-based views. Features: real-time tracking, smart warnings, ingredient limits, preference system
+✅ [DONE] Cloudflare Pages database limitations
+   └─ ANSWER: See RESEARCH_FINDINGS.md
+   └─ Static sites: localStorage (5-10 MB limit, browser-only)
+   └─ Multi-user: D1 (500MB free), KV (1GB free)
 
-*******************************************
-* NOTES *
+✅ [DONE] Multi-user system requirements
+   └─ ANSWER: See RESEARCH_FINDINGS.md
+   └─ Can stay on Cloudflare!
+   └─ Stack: D1 database + Workers + KV storage
+   └─ Cost: $0.50-5/month for 100 users
 
-- Created RESEARCH_FINDINGS.md with comprehensive answers to all research questions
-- Fixed browse meals category bug (dinner/lunch/breakfast/snacks now all work)
-- Ready to implement features based on your preferences and decisions
+✅ [DONE] AI suggestion feature requirements
+   └─ ANSWER: See RESEARCH_FINDINGS.md
+   └─ Options: Rule-based (FREE), Client-side ML (FREE), Cloud AI ($30/month)
+   └─ Recommended: Hybrid approach starting with rule-based
+
+✅ [DONE] Meal plan manager feature design
+   └─ ANSWER: See RESEARCH_FINDINGS.md
+   └─ Features: Real-time tracking, smart warnings, ingredient limits
+   └─ UI options: Dashboard, timeline, card-based views
 
 
-*******************************************
-* Q & A *
-*    answers to outstanding questions needed for further implementation
-*    replies start with 'A:'
+*******************************************************************************
+* Q & A SECTION *
+*******************************************************************************
+Answers to outstanding questions needed for further implementation
+Replies start with 'A:'
 
-Priority 1: High-Impact Features
-	Custom vs Pre-existing Meals:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PRIORITY 1: HIGH-IMPACT FEATURES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-	- Should we merge data structures completely or just unify the UI?
-	A: merge the structures, really just should be one concept/object of 'Meal'
-	
-	- Do you want custom meals to appear in the main meal browser alongside pre-existing ones?
-	A: Yes, should just be all the meals (we are eliminating any difference)
+✅ [ANSWERED] Custom vs Pre-existing Meals
+   Q: Should we merge data structures completely or just unify the UI?
+   A: Merge the structures - really just should be one concept/object of 'Meal'
+   
+   Q: Do you want custom meals to appear in main meal browser alongside 
+      pre-existing ones?
+   A: Yes, should just be all the meals (we are eliminating any difference)
 
-	Pagination:
+✅ [ANSWERED] Pagination
+   Q: How many items per page? (10, 20, or 50?)
+   Q: Prefer infinite scroll or traditional pagination buttons?
+   A: Infinite scroll works. Don't want page to scroll long distances to see 
+      footer. Header for columns should stay in place (like frozen rows in Excel)
 
-	- How many items per page? (10, 20, or 50?)	
-	- Prefer infinite scroll or traditional pagination buttons?
-	A: maybe infinite scroll works,  i dont want the page itself to have to scroll for long distance to see the footer.  I want the header for columns to stay in place as well (like frozen rows in excel)
-	
-	
-	Macro Calculator:
+✅ [ANSWERED] Macro Calculator
+   Q: Which formula? Harris-Benedict, Mifflin-St Jeor, or Katch-McArdle?
+   Q: Should we include TDEE (Total Daily Energy Expenditure) calculator?
+   Q: Need age and gender inputs?
+   A: Keep this simple for now - just allow entry of Macros/KCal daily targets
 
-	- Which formula? Harris-Benedict, Mifflin-St Jeor, or Katch-McArdle?
-	- Should we include TDEE (Total Daily Energy Expenditure) calculator?
-	- Need age and gender inputs?
-	A:  lets keep this simple for now and just allow entry of Macros/KCal daily targets
-	
-	
-	Bulk Ingredient Pricing:
+✅ [ANSWERED] Bulk Ingredient Pricing
+   Q: Manual entry or automated via price scraper?
+   A: Leave option open for multiple online store sources, but only support 
+      walmart.com for now. Implement design that allows 'plugin' to be created 
+      for other sites. Manual entry needs to be available as well. Each item 
+      may have multiple sizes from different sources.
+   
+   Q: Track multiple package sizes (1lb, 2lb, 5lb)?
+   A: Yes, but need to set a 'preferred' size. That size is normally shown and 
+      indicated on shopping lists. If more than one size is defined (need to be 
+      able to add definitions in ingredient editor), then preferred size is 
+      selected with dropdown in editor.
 
-	- Manual entry or automated via price scraper?
-	A:  I want to leave the option open for multiple online store sources, but only supporting walmart.com for now.  Implement a design that will allow a 'plugin' to be created for other sites.  Manual entry needs to be available as well.  So each item may have multiple sizes from different sources.
-	- Track multiple package sizes (1lb, 2lb, 5lb)?
-	A: yes, but need to set a 'preferred' size and then that size is normally shown and indicated on shopping lists.  If more then one size is defined (need to be able to add definitions in the ingredient editor), then the preferred size is selected with a drop box in the editor.
-	
-Priority 2: Implementation Details
-	Unit Converter:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PRIORITY 2: IMPLEMENTATION DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-	- Include volume-to-weight conversions? (e.g., 1 cup flour = 120g)
-	A: YES
-	- Common conversions: oz↔g, cup↔ml, tbsp↔tsp?
-	A: YES
-	
-	Export/Import:
+✅ [ANSWERED] Unit Converter
+   Q: Include volume-to-weight conversions? (e.g., 1 cup flour = 120g)
+   A: YES
+   
+   Q: Common conversions: oz↔g, cup↔ml, tbsp↔tsp?
+   A: YES
 
-	- Format preference: JSON, CSV, or both?
-	A: JSON is good.
-	- Export individual items or entire database?
-	A: for now export of the entire database is acceptable, want to be able to add individual items later.
-	
-	Meal/Ingredient Images:
+✅ [ANSWERED] Export/Import
+   Q: Format preference? JSON, CSV, or both?
+   A: JSON is good
+   
+   Q: Export individual items or entire database?
+   A: For now export of entire database is acceptable. Want to be able to add 
+      individual items later.
 
-	- Storage: Base64 in localStorage (simple but limited) or external hosting (complex but scalable)?
-	A: lets wait on this future, add any provisions neccessary to facilitate later implementation.
-	
-	AI Recipe Parser:
+✅ [ANSWERED] Meal/Ingredient Images
+   Q: Storage: Base64 in localStorage (simple but limited) or external hosting 
+      (complex but scalable)?
+   A: Let's wait on this for future. Add any provisions necessary to facilitate 
+      later implementation.
 
-	- Worth the cost? (~$0.01-0.10 per recipe with OpenAI API)
-	  Or prefer manual entry for now?
-	A:  Create a doc on how that would work, with code examples and set up instructions.  How about you create a prompt that I can submit to an AI that would have it parse and output a JSON structure that I can then import into the application?  Note that ingredient JSON import needs to be available (i think this was in the feature spec). 
+✅ [ANSWERED] AI Recipe Parser
+   Q: Worth the cost? (~$0.01-0.10 per recipe with OpenAI API) or prefer 
+      manual entry for now?
+   A: Create a doc on how that would work, with code examples and setup 
+      instructions. Create a prompt that I can submit to an AI that would have 
+      it parse and output a JSON structure that I can then import into the 
+      application. Note that ingredient JSON import needs to be available.
+
+
+*******************************************************************************
+* IMPLEMENTATION NOTES *
+*******************************************************************************
+
+📝 Recent Changes:
+   - Fixed browse meals category bug (all categories now work)
+   - Added unit display in custom meal creation
+   - Created RESEARCH_FINDINGS.md with comprehensive research
+   - Created CLOUDFLARE_DEPLOYMENT.md deployment guide
+   - Created WINDOWS_LOCAL_DEPLOYMENT.md local setup guide
+
+🎯 Next Implementation Phase:
+   1. Unify meal data structures (custom + pre-existing)
+   2. Add infinite scroll with frozen headers
+   3. Implement save/load meal plans
+   4. Add edit functionality for meals and ingredients
+   5. Create adjustable macro targets interface
+
+═══════════════════════════════════════════════════════════════════════════════
+                              END OF TODO LIST
+═══════════════════════════════════════════════════════════════════════════════
