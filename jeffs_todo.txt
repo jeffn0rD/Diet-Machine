@@ -33,11 +33,13 @@
 HIGH PRIORITY
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-⏳ [TBD] Adjustable macro targets/goals/budget
-   └─ DECISION: Simple manual entry of daily macro/calorie targets
-   └─ Skip complex calculators (Harris-Benedict, etc.) for now
-   └─ Home page must update to reflect current settings
-   └─ Fields: Protein (g), Carbs (g), Fat (g), Calories, Weekly Budget ($)
+✅ [DONE] Adjustable macro targets/goals/budget
+   └─ COMPLETED: Created UserSettings component with edit/display modes
+   └─ Added /settings page with full configuration interface
+   └─ Home page dynamically shows current user targets
+   └─ Includes quick presets (muscle gain, fat loss, maintenance)
+   └─ Shows macro split percentages and daily budget breakdown
+   └─ Settings link added to main navigation
 
 ⏳ [TBD] Save/Load meal plans
    └─ Save daily and weekly meal plans with custom names
@@ -90,12 +92,12 @@ LOW PRIORITY / FUTURE
    └─ Identify best price points
    └─ Run locally
 
-⏳ [TBD] AI Recipe Parser
-   └─ ACTION: Create documentation with code examples and setup instructions
-   └─ Create AI prompt for recipe parsing to JSON structure
-   └─ Output format compatible with ingredient/meal import
+✅ [DONE] AI Recipe Parser
+   └─ COMPLETED: Created AI_RECIPE_PARSER_GUIDE.md with full documentation
+   └─ Includes ready-to-use AI prompt for parsing recipes to JSON
+   └─ Example usage with complete input/output structures
+   └─ Instructions for importing into Diet Machine
    └─ Cost: ~$0.01-0.10 per recipe with OpenAI API
-   └─ See: RESEARCH_FINDINGS.md
 
 ⏳ [TBD] Meal/Ingredient images
    └─ DECISION: Postponed for future implementation

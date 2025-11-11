@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import MealPlanner from '../components/MealPlanner';
+import MealPlanManager from '../components/MealPlanManager';
 ---
 
 <Layout title="Meal Planner - Diet Machine">
@@ -11,6 +12,12 @@ import MealPlanner from '../components/MealPlanner';
         <p class="text-gray-600">Select meals for each day and get instant nutritional breakdown and shopping list</p>
       </div>
       
+      <!-- Meal Plan Save/Load Manager -->
+      <div class="mb-8">
+        <MealPlanManager client:load />
+      </div>
+      
+      <!-- Main Meal Planner -->
       <MealPlanner client:load />
     </div>
   </main>
