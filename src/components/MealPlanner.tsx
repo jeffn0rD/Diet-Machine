@@ -135,6 +135,11 @@ export default function MealPlanner() {
     }
   };
 
+  const isDayComplete = (day: string) => {
+    const dayPlan = weekPlan[day];
+    return !!(dayPlan.breakfast && dayPlan.lunch && dayPlan.dinner);
+  };
+
   const dailyTotals = calculateDailyTotals(selectedDay);
   const weeklyTotals = calculateWeeklyTotals();
 
@@ -143,19 +148,34 @@ export default function MealPlanner() {
       {/* Day Selector */}
       <div className="bg-white rounded-xl shadow-lg p-6">
         <div className="flex flex-wrap gap-2">
-          {DAYS.map(day => (
-            <button
-              key={day}
-              onClick={() => setSelectedDay(day)}
-              className={`px-6 py-3 rounded-lg font-semibold transition ${
-                selectedDay === day
-                  ? 'bg-green-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              {day}
-            </button>
-          ))}
+          {DAYS.map(day => {
+            const isComplete = isDayComplete(day);
+            return (
+              <button
+                key={day}
+                onClick={() => setSelectedDay(day)}
+                className={`px-6 py-3 rounded-lg font-semibold transition relative ${
+                  selectedDay === day
+                    ? 'bg-green-600 text-white'
+                    : isComplete
+                    ? 'bg-green-100 text-green-800 hover:bg-green-200'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {day}
+                {isComplete && (
+                  <span className="absolute -top-1 -right-1 bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    ✓
+                  </span>
+                )}
+                {!isComplete && selectedDay !== day && (
+                  <span className="absolute -top-1 -right-1 bg-yellow-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    !
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -179,7 +199,13 @@ export default function MealPlanner() {
               {weekPlan[selectedDay].breakfast ? (
                 <div className="bg-green-50 p-3 rounded-lg flex justify-between items-center">
                   <div>
-                    <p className="font-medium">{getMealById(weekPlan[selectedDay].breakfast!)?.name}</p>
+                    <a 
+                         href={`/meals?search=${encodeURIComponent(getMealById(weekPlan[selectedDay].breakfast!)?.name || '')}`}
+                         className="font-medium text-blue-600 hover:text-blue-800 hover:underline"
+                         title="View meal details"
+                       >
+                         {getMealById(weekPlan[selectedDay].breakfast!)?.name}
+                       </a>
                     <p className="text-sm text-gray-600">
                       {getMealById(weekPlan[selectedDay].breakfast!)?.protein}g protein | 
                       ${getMealById(weekPlan[selectedDay].breakfast!)?.cost.toFixed(2)}
@@ -211,7 +237,13 @@ export default function MealPlanner() {
               {weekPlan[selectedDay].lunch ? (
                 <div className="bg-blue-50 p-3 rounded-lg flex justify-between items-center">
                   <div>
-                    <p className="font-medium">{getMealById(weekPlan[selectedDay].lunch!)?.name}</p>
+                    <a 
+                         href={`/meals?search=${encodeURIComponent(getMealById(weekPlan[selectedDay].lunch!)?.name || '')}`}
+                         className="font-medium text-blue-600 hover:text-blue-800 hover:underline"
+                         title="View meal details"
+                       >
+                         {getMealById(weekPlan[selectedDay].lunch!)?.name}
+                       </a>
                     <p className="text-sm text-gray-600">
                       {getMealById(weekPlan[selectedDay].lunch!)?.protein}g protein | 
                       ${getMealById(weekPlan[selectedDay].lunch!)?.cost.toFixed(2)}
@@ -243,7 +275,13 @@ export default function MealPlanner() {
               {weekPlan[selectedDay].dinner ? (
                 <div className="bg-purple-50 p-3 rounded-lg flex justify-between items-center">
                   <div>
-                    <p className="font-medium">{getMealById(weekPlan[selectedDay].dinner!)?.name}</p>
+                    <a 
+                         href={`/meals?search=${encodeURIComponent(getMealById(weekPlan[selectedDay].dinner!)?.name || '')}`}
+                         className="font-medium text-blue-600 hover:text-blue-800 hover:underline"
+                         title="View meal details"
+                       >
+                         {getMealById(weekPlan[selectedDay].dinner!)?.name}
+                       </a>
                     <p className="text-sm text-gray-600">
                       {getMealById(weekPlan[selectedDay].dinner!)?.protein}g protein | 
                       ${getMealById(weekPlan[selectedDay].dinner!)?.cost.toFixed(2)}
@@ -277,7 +315,13 @@ export default function MealPlanner() {
                   {weekPlan[selectedDay].snacks.map((snackId, index) => (
                     <div key={index} className="bg-yellow-50 p-3 rounded-lg flex justify-between items-center">
                       <div>
-                        <p className="font-medium">{getMealById(snackId)?.name}</p>
+                        <a 
+                             href={`/meals?search=${encodeURIComponent(getMealById(snackId)?.name || '')}`}
+                             className="font-medium text-blue-600 hover:text-blue-800 hover:underline"
+                             title="View meal details"
+                           >
+                             {getMealById(snackId)?.name}
+                           </a>
                         <p className="text-sm text-gray-600">
                           {getMealById(snackId)?.protein}g protein | 
                           ${getMealById(snackId)?.cost.toFixed(2)}

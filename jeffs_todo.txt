@@ -26,13 +26,13 @@
 
 
 *******************************************************************************
-* NEW FEATURES *
+* NEW FEATURES - RECENT ADDITIONS *
 *******************************************************************************
-	- I see a link for 'Custom Meals' on the Ingredients page.  That shouldnt be there, nor any other reference to 'Custom Meal' since we merged custom and pre-existing meals to be one (editable) concept.
-	- no way to add edit meals through the web interface.  Should be able to click a meal in the meals page and have an option to edit.  Also need an add button.  We had a form for editing before.  
-	- ingredient editor should have drop box for unit.  Should be able to create a list of the most common units.  Also need to handle bulk sizes/pricing here, and should update the unit cost from that if specifying bulk (purchase) option.
-	- In the meal planner, there should be indication of days that are not complete (no meals defined, meals < target daily protein) with colors icons or something similar.  This should apply to both the buttons and also the graph.  For the graph maybe indicate the macro targets as levels (lines) and use colors to indicate daily meal plan is incomplete.
-	- should be able to link through meals in the meal planner to the meal editor/definition page.  Same for ingredients.  This should generally apply everywhere, where there is an ingredient showing should be able to link to the editor, same for meals, plans, etc.  Note always need a way to go back to where you just were.
+	✅ [DONE] Remove 'Custom Meals' references - unified meal concept implemented
+	✅ [DONE] Add/edit meals through web interface - MealEditor component created
+	✅ [DONE] Ingredient editor with unit dropdown - IngredientEditor with bulk pricing
+	⏳ [IN PROGRESS] Visual indicators for incomplete days in meal planner
+	⏳ [IN PROGRESS] Clickable links from meals/ingredients to editors
 	
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 HIGH PRIORITY

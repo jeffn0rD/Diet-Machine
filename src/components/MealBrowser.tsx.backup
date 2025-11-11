@@ -29,15 +29,6 @@ export default function MealBrowser() {
 
   useEffect(() => {
     loadAllMeals();
-    
-    // Check for search parameter in URL
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const searchParam = urlParams.get('search');
-      if (searchParam) {
-        setSearchTerm(searchParam);
-      }
-    }
   }, []);
 
   const loadAllMeals = () => {
@@ -294,16 +285,7 @@ export default function MealBrowser() {
                     {selectedMeal.ingredients.map((ing: any, index: number) => (
                       <li key={index} className="flex items-center gap-2 text-gray-700">
                         <span className="text-green-600">•</span>
-                        <span>
-                             {ing.amount} {ing.unit}{' '}
-                             <a 
-                               href={`/ingredients?search=${encodeURIComponent(ing.name)}`}
-                               className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
-                               title="View ingredient details"
-                             >
-                               {ing.name}
-                             </a>
-                           </span>
+                        <span>{ing.amount} {ing.unit} {ing.name}</span>
                       </li>
                     ))}
                   </ul>
