@@ -59,6 +59,7 @@ export default function MealEditor({ mealId, onSave, onCancel }: MealEditorProps
   });
   const [selectedIngredientId, setSelectedIngredientId] = useState('');
   const [ingredientAmount, setIngredientAmount] = useState('');
+  const [showInlineIngredientForm, setShowInlineIngredientForm] = useState(false);
 
   useEffect(() => {
     loadIngredients();

@@ -119,55 +119,61 @@ export default function IngredientManager() {
           </button>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredIngredients.map(ing => (
-            <div key={ing.id} className="border-2 border-gray-200 rounded-lg p-4 hover:border-green-500 transition">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-lg">{ing.name}</h3>
-                {ing.id.startsWith('custom-') && (
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => setEditingIngredientId(ing.id)}
-                      className="text-blue-600 hover:text-blue-800 text-sm"
-                    >
-                      ✏️
-                    </button>
-                    <button
-                      onClick={() => handleDeleteIngredient(ing.id)}
-                      className="text-red-600 hover:text-red-800 text-sm"
-                    >
-                      🗑️
-                    </button>
-                  </div>
-                )}
-              </div>
-              <span className="inline-block bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded mb-3">
-                {ing.category}
-              </span>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div>
-                  <span className="text-gray-600">Protein:</span>
-                  <span className="font-semibold ml-1">{ing.protein}g</span>
-                </div>
-                <div>
-                  <span className="text-gray-600">Carbs:</span>
-                  <span className="font-semibold ml-1">{ing.carbs}g</span>
-                </div>
-                <div>
-                  <span className="text-gray-600">Fat:</span>
-                  <span className="font-semibold ml-1">{ing.fat}g</span>
-                </div>
-                <div>
-                  <span className="text-gray-600">Calories:</span>
-                  <span className="font-semibold ml-1">{ing.calories}</span>
-                </div>
-              </div>
-              <div className="mt-3 pt-3 border-t">
-                <span className="text-green-600 font-bold">${ing.price.toFixed(2)}</span>
-                <span className="text-gray-500 text-sm ml-1">/ {ing.unit}</span>
-              </div>
-            </div>
-          ))}
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-gray-100 border-b-2 border-gray-300">
+                <th className="text-left p-3 font-semibold">Name</th>
+                <th className="text-left p-3 font-semibold">Category</th>
+                <th className="text-right p-3 font-semibold">Protein</th>
+                <th className="text-right p-3 font-semibold">Carbs</th>
+                <th className="text-right p-3 font-semibold">Fat</th>
+                <th className="text-right p-3 font-semibold">Calories</th>
+                <th className="text-right p-3 font-semibold">Price</th>
+                <th className="text-center p-3 font-semibold">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredIngredients.map(ing => (
+                <tr key={ing.id} className="border-b border-gray-200 hover:bg-gray-50 transition">
+                  <td className="p-3 font-medium">{ing.name}</td>
+                  <td className="p-3">
+                    <span className="inline-block bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
+                      {ing.category}
+                    </span>
+                  </td>
+                  <td className="p-3 text-right text-red-600 font-semibold">{ing.protein}g</td>
+                  <td className="p-3 text-right text-yellow-600 font-semibold">{ing.carbs}g</td>
+                  <td className="p-3 text-right text-purple-600 font-semibold">{ing.fat}g</td>
+                  <td className="p-3 text-right text-blue-600 font-semibold">{ing.calories}</td>
+                  <td className="p-3 text-right">
+                    <span className="text-green-600 font-bold">${ing.price.toFixed(2)}</span>
+                    <span className="text-gray-500 text-sm ml-1">/ {ing.unit}</span>
+                  </td>
+                  <td className="p-3 text-center">
+                    {ing.id.startsWith('custom-') && (
+                      <div className="flex gap-2 justify-center">
+                        <button
+                          onClick={() => setEditingIngredientId(ing.id)}
+                          className="text-blue-600 hover:text-blue-800 text-sm"
+                          title="Edit ingredient"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          onClick={() => handleDeleteIngredient(ing.id)}
+                          className="text-red-600 hover:text-red-800 text-sm"
+                          title="Delete ingredient"
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         {filteredIngredients.length === 0 && (

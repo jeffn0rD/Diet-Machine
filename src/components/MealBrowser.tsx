@@ -66,8 +66,15 @@ export default function MealBrowser() {
   };
 
   const filteredMeals = allMeals.filter(meal => {
+    // Map plural filter values to singular category values
+    const categoryMap: { [key: string]: string } = {
+      'breakfasts': 'Breakfast',
+      'lunches': 'Lunch',
+      'dinners': 'Dinner',
+      'snacks': 'Snack'
+    };
     const matchesCategory = selectedCategory === 'all' || 
-      meal.category.toLowerCase() === selectedCategory.slice(0, -1);
+      meal.category === categoryMap[selectedCategory];
     const matchesSearch = meal.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       meal.description?.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
