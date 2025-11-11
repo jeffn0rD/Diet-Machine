@@ -41,11 +41,16 @@ HIGH PRIORITY
    └─ Shows macro split percentages and daily budget breakdown
    └─ Settings link added to main navigation
 
-⏳ [TBD] Save/Load meal plans
-   └─ Save daily and weekly meal plans with custom names
-   └─ Recall and edit saved plans
-   └─ Option to save as new name or overwrite existing
-   └─ IMPLEMENTATION: localStorage with named plan storage
+✅ [DONE] Save/Load meal plans
+   └─ COMPLETED: Created MealPlanManager component
+   └─ Save plans with custom names and descriptions
+   └─ Load saved plans to restore weekly selections
+   └─ Edit existing plans or save as new
+   └─ Duplicate plans for easy variations
+   └─ Export plans to JSON files
+   └─ Import plans from JSON files
+   └─ Delete unwanted plans
+   └─ Integrated into meal planner page
 
 ⏳ [TBD] Edit existing ingredients and meals
    └─ Add edit button/menu for each item
