@@ -30,6 +30,14 @@ interface WeekPlan {
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 export default function MealPlanner() {
+  const [userSettings, setUserSettings] = useState({
+    protein: 150,
+    carbs: 300,
+    fat: 80,
+    calories: 2700,
+    weeklyBudget: 100
+  });
+
   const [weekPlan, setWeekPlan] = useState<WeekPlan>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('weekPlan');
@@ -54,6 +62,16 @@ export default function MealPlanner() {
       localStorage.setItem('weekPlan', JSON.stringify(weekPlan));
     }
   }, [weekPlan]);
+
+  useEffect(() => {
+    // Load user settings
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('userSettings');
+      if (saved) {
+        setUserSettings(JSON.parse(saved));
+      }
+    }
+  }, []);
 
   const allMeals = [
     ...mealsData.breakfasts,
@@ -348,23 +366,63 @@ export default function MealPlanner() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="text-green-100">Protein</p>
-                <p className="text-2xl font-bold">{dailyTotals.protein.toFixed(1)}g</p>
+                <p className="text-2xl font-bold">
+                  {dailyTotals.protein.toFixed(1)}g / {userSettings.protein}g
+                </p>
+                <div className="w-full bg-green-900 rounded-full h-2 mt-2">
+                  <div 
+                    className="bg-white rounded-full h-2 transition-all"
+                    style={{ width: `${Math.min((dailyTotals.protein / userSettings.protein) * 100, 100)}%` }}
+                  />
+                </div>
               </div>
               <div>
                 <p className="text-green-100">Calories</p>
-                <p className="text-2xl font-bold">{dailyTotals.calories.toFixed(0)}</p>
+                <p className="text-2xl font-bold">
+                  {dailyTotals.calories.toFixed(0)} / {userSettings.calories}
+                </p>
+                <div className="w-full bg-blue-900 rounded-full h-2 mt-2">
+                  <div 
+                    className="bg-white rounded-full h-2 transition-all"
+                    style={{ width: `${Math.min((dailyTotals.calories / userSettings.calories) * 100, 100)}%` }}
+                  />
+                </div>
               </div>
               <div>
                 <p className="text-green-100">Fat</p>
-                <p className="text-2xl font-bold">{dailyTotals.fat.toFixed(1)}g</p>
+                <p className="text-2xl font-bold">
+                  {dailyTotals.fat.toFixed(1)}g / {userSettings.fat}g
+                </p>
+                <div className="w-full bg-green-900 rounded-full h-2 mt-2">
+                  <div 
+                    className="bg-white rounded-full h-2 transition-all"
+                    style={{ width: `${Math.min((dailyTotals.fat / userSettings.fat) * 100, 100)}%` }}
+                  />
+                </div>
               </div>
               <div>
                 <p className="text-green-100">Carbs</p>
-                <p className="text-2xl font-bold">{dailyTotals.carbs.toFixed(1)}g</p>
+                <p className="text-2xl font-bold">
+                  {dailyTotals.carbs.toFixed(1)}g / {userSettings.carbs}g
+                </p>
+                <div className="w-full bg-blue-900 rounded-full h-2 mt-2">
+                  <div 
+                    className="bg-white rounded-full h-2 transition-all"
+                    style={{ width: `${Math.min((dailyTotals.carbs / userSettings.carbs) * 100, 100)}%` }}
+                  />
+                </div>
               </div>
               <div className="col-span-2">
                 <p className="text-green-100">Daily Cost</p>
-                <p className="text-2xl font-bold">${dailyTotals.cost.toFixed(2)}</p>
+                <p className="text-2xl font-bold">
+                  ${dailyTotals.cost.toFixed(2)} / ${(userSettings.weeklyBudget / 7).toFixed(2)}
+                </p>
+                <div className="w-full bg-green-900 rounded-full h-2 mt-2">
+                  <div 
+                    className="bg-white rounded-full h-2 transition-all"
+                    style={{ width: `${Math.min((dailyTotals.cost / (userSettings.weeklyBudget / 7)) * 100, 100)}%` }}
+                  />
+                </div>
               </div>
             </div>
           </div>
