@@ -1,30 +1,65 @@
 
 * FIXES *
 
-- create (custom) meal, add ingredient, the unit should show (ie, oz, cup, etc) next to amount box
-- browse meals:  only dinner category is working
-- can we make custom meals and the pre-existing ones the same (or indistinguishable)?  So all meals show the same, and can be edited/manipulated in the same way.
-- pagination of meals and ingredients as the lists can grow to be long for one screen
+- [DONE] ✅ browse meals: only dinner category is working - FIXED: Changed .replace('s', '') to .slice(0, -1)
+- [IN PROGRESS] 🔄 create (custom) meal, add ingredient, the unit should show (ie, oz, cup, etc) next to amount box
+- [TBD] ⏳ can we make custom meals and the pre-existing ones the same (or indistinguishable)?  So all meals show the same, and can be edited/manipulated in the same way.
+  * QUESTION: Should we merge the data structures or just unify the UI? Need your input.
+- [TBD] ⏳ pagination of meals and ingredients as the lists can grow to be long for one screen
+  * QUESTION: Items per page preference? 10, 20, or 50? Infinite scroll vs traditional pagination?
 
 *******************************************
 * NEW FEATURES *
 
-- way to adjust daily/weekly macro targets/goals/budget.  Would be great if user could enter bodyweight/fat%, activity levels, fitness goals (ie strength training, gain muscle, lose weight) with targets.  Note the home page needs to update to reflect current settings.
-- need a way to save a daily and weekly meal plan for recall later.  So a user can create a weekly plan by adding all the meals, then save it with a name.  Then the plan can be recalled and edited (and possibly resaved to the same or a new name).
-- need a way to edit existing ingredients and meals, a button for each item or selection mechanism and then option menu.
-- can the cheapest bulk sizes of ingredients and price be added to ingredient data?  For instance dried beans may come in a 1lb bag for a certain price, track that for grocery list creation.
-- when creating a custom meal, it would be great if you could add a new ingredient without having to cancel and do it with the 'add ingredient' button, meaning add that functionality to the form (but keep the button '+ Add Ingredient' as well)
-- can we add a unit converter to the custom meal creation as well as a tool accessible from the ingredient list?  It would be great to specify different units from the ones defined in ingredients data and convert automatically.
-- create a way to export/import ingredients and meals
-- implement the price scraper script, can be run locally.  It should also find the (bulk) sizes, like 2lb box, 48oz tub, etc -- with the best price point.  
-- is there a way to just copy a recipe as text, say from a website, and then enter it into a text box, and have the system figure out how to add the meal and ingredients as needed?  It should calculate the macro nutrients per serving as well (you would need to enter number of servings for the recipe).  Maybe it could even divide the servings so you can see the per serving amounts?  Maybe utilize an AI?  Is there a prompt I can use here that would do that for me?
-- a way to save an image of the meal/ingredient
+- [TBD] ⏳ way to adjust daily/weekly macro targets/goals/budget.  Would be great if user could enter bodyweight/fat%, activity levels, fitness goals (ie strength training, gain muscle, lose weight) with targets.  Note the home page needs to update to reflect current settings.
+  * QUESTION: Which calculation method? (Harris-Benedict, Mifflin-St Jeor, Katch-McArdle?) Should we include TDEE calculator? Age and gender inputs needed?
+  
+- [TBD] ⏳ need a way to save a daily and weekly meal plan for recall later.  So a user can create a weekly plan by adding all the meals, then save it with a name.  Then the plan can be recalled and edited (and possibly resaved to the same or a new name).
+  * IMPLEMENTATION: Will use localStorage with named plan storage
+  
+- [TBD] ⏳ need a way to edit existing ingredients and meals, a button for each item or selection mechanism and then option menu.
+  * IMPLEMENTATION: Add edit modal with form pre-populated with current data
+  
+- [TBD] ⏳ can the cheapest bulk sizes of ingredients and price be added to ingredient data?  For instance dried beans may come in a 1lb bag for a certain price, track that for grocery list creation.
+  * QUESTION: Should this be manual entry or part of the price scraper?
+  
+- [TBD] ⏳ when creating a custom meal, it would be great if you could add a new ingredient without having to cancel and do it with the 'add ingredient' button, meaning add that functionality to the form (but keep the button '+ Add Ingredient' as well)
+  * IMPLEMENTATION: Add "+ New Ingredient" button within meal form that opens inline form
+  
+- [TBD] ⏳ can we add a unit converter to the custom meal creation as well as a tool accessible from the ingredient list?  It would be great to specify different units from the ones defined in ingredients data and convert automatically.
+  * QUESTION: Include volume-to-weight conversions? Common conversions: oz↔g, cup↔ml, tbsp↔tsp
+  
+- [TBD] ⏳ create a way to export/import ingredients and meals
+  * QUESTION: Format preference? JSON, CSV, or both?
+  
+- [TBD] ⏳ implement the price scraper script, can be run locally.  It should also find the (bulk) sizes, like 2lb box, 48oz tub, etc -- with the best price point.
+  * NOTE: Script template already exists, needs Puppeteer implementation
+  
+- [TBD] ⏳ is there a way to just copy a recipe as text, say from a website, and then enter it into a text box, and have the system figure out how to add the meal and ingredients as needed?  It should calculate the macro nutrients per serving as well (you would need to enter number of servings for the recipe).  Maybe it could even divide the servings so you can see the per serving amounts?  Maybe utilize an AI?  Is there a prompt I can use here that would do that for me?
+  * RESEARCH COMPLETE: See RESEARCH_FINDINGS.md - AI recipe parser is feasible with OpenAI API (~$0.01-0.10 per recipe)
+  
+- [TBD] ⏳ a way to save an image of the meal/ingredient
+  * QUESTION: Storage option preference? Base64 in localStorage vs external hosting?
 
 
 *******************************************
 * QUESTIONS/RESEARCH *
 
-- what are the database limitations when using cloudflare pages free tier?
-- what would be required to turn this into a multi-user system?  A new server model (not cloudflare) or paid tier?  Options?
-- what would be required to have a suggestion feature?  AI?  I want to be able to have it make suggestions, for instance, to complete a meal plan that is missing some meals, or needs snacks added to hit daily targets.  It should work by the day or by the week.  Maybe a way to set ingredient/meal preferences with some kind of rating?  Also way to set daily/weekly limits on ingredients?  
-- along the thinking of the last idea, maybe expand the concept to a meal plan 'manager' feature, that according to your targets and preferences, can warn about macros being too low/too high, grocery cost getting too high, ingredient limits, etc.  What would design and implementation options be?
+- [DONE] ✅ what are the database limitations when using cloudflare pages free tier?
+  * ANSWER: See RESEARCH_FINDINGS.md - Static sites have no database, but localStorage works. For multi-user: D1 (500MB free), KV (1GB free)
+  
+- [DONE] ✅ what would be required to turn this into a multi-user system?  A new server model (not cloudflare) or paid tier?  Options?
+  * ANSWER: See RESEARCH_FINDINGS.md - Can stay on Cloudflare! Options: D1 database + Workers + KV storage. Cost: $0.50-5/month for 100 users
+  
+- [DONE] ✅ what would be required to have a suggestion feature?  AI?  I want to be able to have it make suggestions, for instance, to complete a meal plan that is missing some meals, or needs snacks added to hit daily targets.  It should work by the day or by the week.  Maybe a way to set ingredient/meal preferences with some kind of rating?  Also way to set daily/weekly limits on ingredients?
+  * ANSWER: See RESEARCH_FINDINGS.md - Multiple options: Rule-based (FREE), Client-side ML (FREE), Cloud AI ($30/month). Recommended: Hybrid approach starting with rule-based
+  
+- [DONE] ✅ along the thinking of the last idea, maybe expand the concept to a meal plan 'manager' feature, that according to your targets and preferences, can warn about macros being too low/too high, grocery cost getting too high, ingredient limits, etc.  What would design and implementation options be?
+  * ANSWER: See RESEARCH_FINDINGS.md - Design options provided with dashboard, timeline, and card-based views. Features: real-time tracking, smart warnings, ingredient limits, preference system
+
+*******************************************
+* NOTES *
+
+- Created RESEARCH_FINDINGS.md with comprehensive answers to all research questions
+- Fixed browse meals category bug (dinner/lunch/breakfast/snacks now all work)
+- Ready to implement features based on your preferences and decisions

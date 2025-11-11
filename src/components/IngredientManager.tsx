@@ -531,41 +531,58 @@ export default function IngredientManager() {
                 </div>
                 
                 <div className="flex gap-2">
-                  <select
-                    id="ingredient-select"
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="">Select ingredient...</option>
-                    {ingredients.map(ing => (
-                      <option key={ing.id} value={ing.id}>{ing.name}</option>
-                    ))}
-                  </select>
-                  <input
-                    type="number"
-                    step="0.1"
-                    id="ingredient-amount"
-                    placeholder="Amount"
-                    className="w-24 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                  <button
-                    onClick={() => {
-                      const select = document.getElementById('ingredient-select') as HTMLSelectElement;
-                      const amountInput = document.getElementById('ingredient-amount') as HTMLInputElement;
-                      if (select.value && amountInput.value) {
-                        const updated = [...(newMeal.ingredients || []), {
-                          ingredientId: select.value,
-                          amount: parseFloat(amountInput.value)
-                        }];
-                        setNewMeal({ ...newMeal, ingredients: updated });
-                        select.value = '';
-                        amountInput.value = '';
-                      }
-                    }}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                  >
-                    Add
-                  </button>
-                </div>
+                    <select
+                      id="ingredient-select"
+                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                      onChange={(e) => {
+                        const selectedIng = ingredients.find(i => i.id === e.target.value);
+                        const unitDisplay = document.getElementById('ingredient-unit-display');
+                        if (unitDisplay && selectedIng) {
+                          unitDisplay.textContent = selectedIng.unit;
+                        } else if (unitDisplay) {
+                          unitDisplay.textContent = '';
+                        }
+                      }}
+                    >
+                      <option value="">Select ingredient...</option>
+                      {ingredients.map(ing => (
+                        <option key={ing.id} value={ing.id}>{ing.name}</option>
+                      ))}
+                    </select>
+                    <div className="relative">
+                      <input
+                        type="number"
+                        step="0.1"
+                        id="ingredient-amount"
+                        placeholder="Amount"
+                        className="w-32 px-4 py-2 pr-16 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                      />
+                      <span 
+                        id="ingredient-unit-display"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 font-medium"
+                      ></span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        const select = document.getElementById('ingredient-select') as HTMLSelectElement;
+                        const amountInput = document.getElementById('ingredient-amount') as HTMLInputElement;
+                        if (select.value && amountInput.value) {
+                          const updated = [...(newMeal.ingredients || []), {
+                            ingredientId: select.value,
+                            amount: parseFloat(amountInput.value)
+                          }];
+                          setNewMeal({ ...newMeal, ingredients: updated });
+                          select.value = '';
+                          amountInput.value = '';
+                          const unitDisplay = document.getElementById('ingredient-unit-display');
+                          if (unitDisplay) unitDisplay.textContent = '';
+                        }
+                      }}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                    >
+                      Add
+                    </button>
+                  </div>
               </div>
 
               <div className="flex gap-4 pt-4">

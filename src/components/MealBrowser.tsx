@@ -15,7 +15,7 @@ export default function MealBrowser() {
 
   const filteredMeals = allMeals.filter(meal => {
     const matchesCategory = selectedCategory === 'all' || 
-      meal.category.toLowerCase() === selectedCategory.replace('s', '');
+      meal.category.toLowerCase() === selectedCategory.slice(0, -1);
     const matchesSearch = meal.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       meal.description?.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
