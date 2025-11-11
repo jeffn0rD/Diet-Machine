@@ -63,3 +63,66 @@
 - Created RESEARCH_FINDINGS.md with comprehensive answers to all research questions
 - Fixed browse meals category bug (dinner/lunch/breakfast/snacks now all work)
 - Ready to implement features based on your preferences and decisions
+
+
+*******************************************
+* Q & A *
+*    answers to outstanding questions needed for further implementation
+*    replies start with 'A:'
+
+Priority 1: High-Impact Features
+	Custom vs Pre-existing Meals:
+
+	- Should we merge data structures completely or just unify the UI?
+	A: merge the structures, really just should be one concept/object of 'Meal'
+	
+	- Do you want custom meals to appear in the main meal browser alongside pre-existing ones?
+	A: Yes, should just be all the meals (we are eliminating any difference)
+
+	Pagination:
+
+	- How many items per page? (10, 20, or 50?)	
+	- Prefer infinite scroll or traditional pagination buttons?
+	A: maybe infinite scroll works,  i dont want the page itself to have to scroll for long distance to see the footer.  I want the header for columns to stay in place as well (like frozen rows in excel)
+	
+	
+	Macro Calculator:
+
+	- Which formula? Harris-Benedict, Mifflin-St Jeor, or Katch-McArdle?
+	- Should we include TDEE (Total Daily Energy Expenditure) calculator?
+	- Need age and gender inputs?
+	A:  lets keep this simple for now and just allow entry of Macros/KCal daily targets
+	
+	
+	Bulk Ingredient Pricing:
+
+	- Manual entry or automated via price scraper?
+	A:  I want to leave the option open for multiple online store sources, but only supporting walmart.com for now.  Implement a design that will allow a 'plugin' to be created for other sites.  Manual entry needs to be available as well.  So each item may have multiple sizes from different sources.
+	- Track multiple package sizes (1lb, 2lb, 5lb)?
+	A: yes, but need to set a 'preferred' size and then that size is normally shown and indicated on shopping lists.  If more then one size is defined (need to be able to add definitions in the ingredient editor), then the preferred size is selected with a drop box in the editor.
+	
+Priority 2: Implementation Details
+	Unit Converter:
+
+	- Include volume-to-weight conversions? (e.g., 1 cup flour = 120g)
+	A: YES
+	- Common conversions: oz↔g, cup↔ml, tbsp↔tsp?
+	A: YES
+	
+	Export/Import:
+
+	- Format preference: JSON, CSV, or both?
+	A: JSON is good.
+	- Export individual items or entire database?
+	A: for now export of the entire database is acceptable, want to be able to add individual items later.
+	
+	Meal/Ingredient Images:
+
+	- Storage: Base64 in localStorage (simple but limited) or external hosting (complex but scalable)?
+	A: lets wait on this future, add any provisions neccessary to facilitate later implementation.
+	
+	AI Recipe Parser:
+
+	- Worth the cost? (~$0.01-0.10 per recipe with OpenAI API)
+	  Or prefer manual entry for now?
+	A:  Create a doc on how that would work, with code examples and set up instructions.  How about you create a prompt that I can submit to an AI that would have it parse and output a JSON structure that I can then import into the application?  Note that ingredient JSON import needs to be available (i think this was in the feature spec). 
