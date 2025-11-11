@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IngredientManager from '../components/IngredientManager';
+---
+
+<Layout title="Ingredients - Diet Machine">
+  <main class="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-8">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-green-800 mb-2">Ingredient Manager</h1>
+        <p class="text-gray-600">View, edit, and add custom ingredients and meals</p>
+      </div>
+      
+      <IngredientManager client:load />
+    </div>
+  </main>
+</Layout>

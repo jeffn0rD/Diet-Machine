@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Diet Machine - Meal Planner">
+  <main class="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+    <div class="container mx-auto px-4 py-8">
+      <!-- Hero Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-5xl font-bold text-green-800 mb-4">
+          🥗 Diet Machine
+        </h1>
+        <p class="text-xl text-gray-600 mb-6">
+          High-Protein, Budget-Friendly Meal Planning Made Easy
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 text-sm">
+          <div class="bg-white px-6 py-3 rounded-full shadow-md">
+            <span class="font-semibold text-green-700">150g+</span> Daily Protein
+          </div>
+          <div class="bg-white px-6 py-3 rounded-full shadow-md">
+            <span class="font-semibold text-blue-700">$95-100</span> Weekly Budget
+          </div>
+          <div class="bg-white px-6 py-3 rounded-full shadow-md">
+            <span class="font-semibold text-purple-700">60+</span> Meal Options
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Cards -->
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <a href="/planner" class="group">
+          <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="text-5xl mb-4">📅</div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Meal Planner</h2>
+            <p class="text-gray-600">Plan your weekly meals and generate shopping lists</p>
+          </div>
+        </a>
+
+        <a href="/meals" class="group">
+          <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="text-5xl mb-4">🍽️</div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Browse Meals</h2>
+            <p class="text-gray-600">Explore 60+ high-protein meal options</p>
+          </div>
+        </a>
+
+        <a href="/ingredients" class="group">
+          <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div class="text-5xl mb-4">🥕</div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Ingredients</h2>
+            <p class="text-gray-600">Manage ingredients and add custom items</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Features Section -->
+      <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Features</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center">
+            <div class="text-4xl mb-3">🎯</div>
+            <h3 class="font-semibold text-gray-800 mb-2">Dynamic Planning</h3>
+            <p class="text-sm text-gray-600">Select meals for each day and get instant nutritional breakdown</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-3">🛒</div>
+            <h3 class="font-semibold text-gray-800 mb-2">Auto Shopping Lists</h3>
+            <p class="text-sm text-gray-600">Generate organized shopping lists with quantities and costs</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-3">📊</div>
+            <h3 class="font-semibold text-gray-800 mb-2">Macro Tracking</h3>
+            <p class="text-sm text-gray-600">Visual charts showing protein, carbs, fats, and calories</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-3">✏️</div>
+            <h3 class="font-semibold text-gray-800 mb-2">Custom Meals</h3>
+            <p class="text-sm text-gray-600">Add your own meals and ingredients to the database</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="bg-gradient-to-r from-green-600 to-blue-600 rounded-xl shadow-lg p-8 text-white">
+        <h2 class="text-3xl font-bold mb-6 text-center">Why Diet Machine?</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold mb-2">💰 Budget-Friendly</h3>
+            <p class="text-green-100">Stay within $95-100 per week with smart shopping strategies and bulk buying tips</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">💪 High Protein</h3>
+            <p class="text-green-100">Every meal designed to help you hit 150g+ daily protein for muscle building</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">⚡ Simple Prep</h3>
+            <p class="text-green-100">Most meals ready in 5-10 minutes using microwave, hot plate, and toaster oven</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,534 @@
+{
+  "breakfasts": [
+    {
+      "id": "breakfast-burrito",
+      "name": "Breakfast Burrito",
+      "description": "Scrambled eggs, black beans, cheddar cheese, tortilla, veggies",
+      "protein": 35,
+      "fat": 22,
+      "carbs": 45,
+      "calories": 580,
+      "cost": 2.15,
+      "prepTime": 5,
+      "freezerFriendly": true,
+      "tags": ["batch-friendly", "budget"],
+      "ingredients": [
+        { "name": "Eggs", "amount": 3, "unit": "whole" },
+        { "name": "Black Beans", "amount": 0.5, "unit": "cup" },
+        { "name": "Cheddar Cheese", "amount": 1, "unit": "oz" },
+        { "name": "Burrito Tortilla", "amount": 1, "unit": "whole" },
+        { "name": "Mixed Vegetables", "amount": 0.5, "unit": "cup" }
+      ],
+      "instructions": "Scramble eggs, warm beans and veggies, assemble in tortilla with cheese. Can be frozen and reheated."
+    },
+    {
+      "id": "egg-white-turkey-burrito",
+      "name": "Egg White & Turkey Burrito",
+      "description": "Egg whites, deli turkey, cheese, tortilla",
+      "protein": 38,
+      "fat": 15,
+      "carbs": 45,
+      "calories": 520,
+      "cost": 2.30,
+      "prepTime": 5,
+      "freezerFriendly": true,
+      "tags": ["high-protein"],
+      "ingredients": [
+        { "name": "Egg Whites", "amount": 4, "unit": "whites" },
+        { "name": "Deli Turkey", "amount": 2, "unit": "oz" },
+        { "name": "Cheddar Cheese", "amount": 1, "unit": "oz" },
+        { "name": "Burrito Tortilla", "amount": 1, "unit": "whole" }
+      ],
+      "instructions": "Scramble egg whites, add turkey slices, assemble with cheese in tortilla."
+    },
+    {
+      "id": "bean-cheese-burrito",
+      "name": "Bean & Cheese Burrito",
+      "description": "Double beans, extra cheese, vegetarian option",
+      "protein": 28,
+      "fat": 18,
+      "carbs": 52,
+      "calories": 550,
+      "cost": 1.65,
+      "prepTime": 3,
+      "freezerFriendly": true,
+      "tags": ["vegetarian", "budget", "best-value"],
+      "ingredients": [
+        { "name": "Black Beans", "amount": 1, "unit": "cup" },
+        { "name": "Cheddar Cheese", "amount": 2, "unit": "oz" },
+        { "name": "Burrito Tortilla", "amount": 1, "unit": "whole" }
+      ],
+      "instructions": "Warm beans, add cheese, wrap in tortilla. Most budget-friendly option."
+    },
+    {
+      "id": "oatmeal-pb-banana",
+      "name": "Oatmeal with PB & Banana",
+      "description": "Rolled oats, peanut butter, banana, cinnamon",
+      "protein": 15,
+      "fat": 18,
+      "carbs": 58,
+      "calories": 560,
+      "cost": 0.92,
+      "prepTime": 3,
+      "freezerFriendly": false,
+      "tags": ["vegetarian", "super-budget", "quick"],
+      "ingredients": [
+        { "name": "Rolled Oats", "amount": 0.5, "unit": "cup" },
+        { "name": "Peanut Butter", "amount": 2, "unit": "tbsp" },
+        { "name": "Banana", "amount": 1, "unit": "whole" },
+        { "name": "Cinnamon", "amount": 0.5, "unit": "tsp" }
+      ],
+      "instructions": "Microwave oats with water for 2-3 minutes, top with peanut butter, sliced banana, and cinnamon."
+    },
+    {
+      "id": "protein-boosted-oatmeal",
+      "name": "Protein-Boosted Oatmeal",
+      "description": "Oats with scrambled eggs stirred in for extra protein",
+      "protein": 25,
+      "fat": 20,
+      "carbs": 58,
+      "calories": 600,
+      "cost": 1.15,
+      "prepTime": 4,
+      "freezerFriendly": false,
+      "tags": ["high-protein"],
+      "ingredients": [
+        { "name": "Rolled Oats", "amount": 0.5, "unit": "cup" },
+        { "name": "Eggs", "amount": 2, "unit": "whole" },
+        { "name": "Peanut Butter", "amount": 1, "unit": "tbsp" },
+        { "name": "Banana", "amount": 1, "unit": "whole" }
+      ],
+      "instructions": "Cook oats, scramble eggs separately, stir eggs into hot oatmeal for creamy texture. Top with PB and banana."
+    },
+    {
+      "id": "scrambled-eggs-cheese",
+      "name": "Scrambled Eggs & Cheese",
+      "description": "4 eggs scrambled with cheddar cheese",
+      "protein": 30,
+      "fat": 25,
+      "carbs": 15,
+      "calories": 590,
+      "cost": 1.90,
+      "prepTime": 5,
+      "freezerFriendly": false,
+      "tags": ["classic", "low-carb"],
+      "ingredients": [
+        { "name": "Eggs", "amount": 4, "unit": "whole" },
+        { "name": "Cheddar Cheese", "amount": 1, "unit": "oz" },
+        { "name": "Butter", "amount": 1, "unit": "tbsp" }
+      ],
+      "instructions": "Scramble eggs in butter on hot plate, add cheese at the end."
+    },
+    {
+      "id": "cottage-cheese-bowl",
+      "name": "Cottage Cheese Bowl",
+      "description": "Cottage cheese with fruit and peanut butter",
+      "protein": 28,
+      "fat": 15,
+      "carbs": 30,
+      "calories": 470,
+      "cost": 2.15,
+      "prepTime": 2,
+      "freezerFriendly": false,
+      "tags": ["quick", "no-cook"],
+      "ingredients": [
+        { "name": "Cottage Cheese", "amount": 1, "unit": "cup" },
+        { "name": "Banana", "amount": 1, "unit": "whole" },
+        { "name": "Peanut Butter", "amount": 1, "unit": "tbsp" }
+      ],
+      "instructions": "Mix cottage cheese with sliced banana and peanut butter."
+    },
+    {
+      "id": "greek-yogurt-bowl",
+      "name": "Greek Yogurt Bowl",
+      "description": "Greek yogurt with fruit and peanut butter",
+      "protein": 27,
+      "fat": 8,
+      "carbs": 40,
+      "calories": 440,
+      "cost": 2.10,
+      "prepTime": 2,
+      "freezerFriendly": false,
+      "tags": ["quick", "no-cook"],
+      "ingredients": [
+        { "name": "Greek Yogurt", "amount": 1, "unit": "cup" },
+        { "name": "Banana", "amount": 1, "unit": "whole" },
+        { "name": "Peanut Butter", "amount": 1, "unit": "tbsp" }
+      ],
+      "instructions": "Mix Greek yogurt with sliced banana and peanut butter."
+    },
+    {
+      "id": "chicken-rice-bowl",
+      "name": "Chicken & Rice Bowl",
+      "description": "Pre-cooked chicken breast with rice and veggies",
+      "protein": 36,
+      "fat": 12,
+      "carbs": 40,
+      "calories": 560,
+      "cost": 1.80,
+      "prepTime": 5,
+      "freezerFriendly": true,
+      "tags": ["savory", "batch-friendly"],
+      "ingredients": [
+        { "name": "Chicken Breast", "amount": 4, "unit": "oz" },
+        { "name": "White Rice", "amount": 1, "unit": "cup" },
+        { "name": "Mixed Vegetables", "amount": 0.5, "unit": "cup" }
+      ],
+      "instructions": "Reheat pre-cooked chicken, rice, and veggies in microwave."
+    }
+  ],
+  "lunches": [
+    {
+      "id": "chicken-burrito",
+      "name": "Chicken Burrito",
+      "description": "Chicken breast, rice, black beans, cheese, tortilla",
+      "protein": 42,
+      "fat": 20,
+      "carbs": 55,
+      "calories": 840,
+      "cost": 2.50,
+      "prepTime": 3,
+      "freezerFriendly": true,
+      "tags": ["high-protein", "batch-friendly"],
+      "ingredients": [
+        { "name": "Chicken Breast", "amount": 5, "unit": "oz" },
+        { "name": "White Rice", "amount": 0.75, "unit": "cup" },
+        { "name": "Black Beans", "amount": 0.5, "unit": "cup" },
+        { "name": "Cheddar Cheese", "amount": 1, "unit": "oz" },
+        { "name": "Burrito Tortilla", "amount": 1, "unit": "whole" }
+      ],
+      "instructions": "Assemble pre-cooked chicken, rice, beans, and cheese in tortilla. Freeze or refrigerate."
+    },
+    {
+      "id": "pork-bean-bowl",
+      "name": "Pork & Bean Bowl",
+      "description": "Pork shoulder, black beans, rice, veggies",
+      "protein": 40,
+      "fat": 22,
+      "carbs": 50,
+      "calories": 860,
+      "cost": 2.40,
+      "prepTime": 5,
+      "freezerFriendly": true,
+      "tags": ["hearty"],
+      "ingredients": [
+        { "name": "Pork Shoulder", "amount": 4, "unit": "oz" },
+        { "name": "Black Beans", "amount": 0.5, "unit": "cup" },
+        { "name": "White Rice", "amount": 1, "unit": "cup" },
+        { "name": "Mixed Vegetables", "amount": 0.5, "unit": "cup" }
+      ],
+      "instructions": "Reheat pre-cooked pork, beans, rice, and veggies in microwave."
+    },
+    {
+      "id": "turkey-wrap",
+      "name": "Turkey Wrap",
+      "description": "Deli turkey, tortilla, veggies, cheese",
+      "protein": 38,
+      "fat": 18,
+      "carbs": 52,
+      "calories": 820,
+      "cost": 2.30,
+      "prepTime": 3,
+      "freezerFriendly": false,
+      "tags": ["quick", "no-cook"],
+      "ingredients": [
+        { "name": "Deli Turkey", "amount": 4, "unit": "oz" },
+        { "name": "Burrito Tortilla", "amount": 1, "unit": "whole" },
+        { "name": "Cheddar Cheese", "amount": 1, "unit": "oz" },
+        { "name": "Spinach", "amount": 1, "unit": "cup" },
+        { "name": "Tomato", "amount": 0.5, "unit": "whole" }
+      ],
+      "instructions": "Layer turkey, cheese, spinach, and tomato in tortilla and wrap."
+    },
+    {
+      "id": "lentil-soup",
+      "name": "Lentil Soup with Bread",
+      "description": "Lentils, veggies, broth, bread",
+      "protein": 30,
+      "fat": 12,
+      "carbs": 70,
+      "calories": 750,
+      "cost": 1.50,
+      "prepTime": 5,
+      "freezerFriendly": true,
+      "tags": ["budget", "best-value"],
+      "ingredients": [
+        { "name": "Lentils", "amount": 1, "unit": "cup" },
+        { "name": "Mixed Vegetables", "amount": 1, "unit": "cup" },
+        { "name": "Onion", "amount": 0.5, "unit": "whole" },
+        { "name": "Garlic", "amount": 2, "unit": "cloves" }
+      ],
+      "instructions": "Reheat pre-cooked lentil soup in microwave."
+    },
+    {
+      "id": "chickpea-stirfry",
+      "name": "Chickpea & Veg Stir-fry",
+      "description": "Canned chickpeas, frozen veggies, rice",
+      "protein": 28,
+      "fat": 16,
+      "carbs": 80,
+      "calories": 780,
+      "cost": 2.00,
+      "prepTime": 10,
+      "freezerFriendly": false,
+      "tags": ["vegetarian"],
+      "ingredients": [
+        { "name": "Chickpeas", "amount": 1, "unit": "cup" },
+        { "name": "Mixed Vegetables", "amount": 1, "unit": "cup" },
+        { "name": "White Rice", "amount": 1, "unit": "cup" },
+        { "name": "Soy Sauce", "amount": 1, "unit": "tbsp" }
+      ],
+      "instructions": "Stir-fry chickpeas and veggies on hot plate, serve over rice."
+    },
+    {
+      "id": "egg-salad",
+      "name": "Egg Salad",
+      "description": "5 hard-boiled eggs with mayo and veggies",
+      "protein": 30,
+      "fat": 22,
+      "carbs": 20,
+      "calories": 680,
+      "cost": 1.45,
+      "prepTime": 5,
+      "freezerFriendly": false,
+      "tags": ["budget", "super-budget"],
+      "ingredients": [
+        { "name": "Eggs", "amount": 5, "unit": "whole" },
+        { "name": "Olive Oil", "amount": 2, "unit": "tbsp" },
+        { "name": "Spinach", "amount": 1, "unit": "cup" }
+      ],
+      "instructions": "Chop hard-boiled eggs, mix with oil and serve over spinach."
+    }
+  ],
+  "dinners": [
+    {
+      "id": "dinner-burrito-pork",
+      "name": "Dinner Burrito (Pork)",
+      "description": "Pork shoulder, rice, beans, cheese, tortilla",
+      "protein": 45,
+      "fat": 22,
+      "carbs": 60,
+      "calories": 920,
+      "cost": 2.60,
+      "prepTime": 3,
+      "freezerFriendly": true,
+      "tags": ["high-protein", "batch-friendly"],
+      "ingredients": [
+        { "name": "Pork Shoulder", "amount": 5, "unit": "oz" },
+        { "name": "White Rice", "amount": 1, "unit": "cup" },
+        { "name": "Black Beans", "amount": 0.5, "unit": "cup" },
+        { "name": "Cheddar Cheese", "amount": 1, "unit": "oz" },
+        { "name": "Burrito Tortilla", "amount": 1, "unit": "whole" }
+      ],
+      "instructions": "Assemble pre-cooked pork, rice, beans, and cheese in tortilla."
+    },
+    {
+      "id": "baked-chicken-potatoes",
+      "name": "Baked Chicken & Potatoes",
+      "description": "Chicken breast, potatoes, olive oil, seasonings",
+      "protein": 50,
+      "fat": 18,
+      "carbs": 50,
+      "calories": 900,
+      "cost": 2.70,
+      "prepTime": 25,
+      "freezerFriendly": false,
+      "tags": ["highest-protein", "classic"],
+      "ingredients": [
+        { "name": "Chicken Breast", "amount": 6, "unit": "oz" },
+        { "name": "Potatoes", "amount": 2, "unit": "medium" },
+        { "name": "Olive Oil", "amount": 1, "unit": "tbsp" }
+      ],
+      "instructions": "Bake chicken and potatoes in toaster oven at 400°F for 25 minutes."
+    },
+    {
+      "id": "pork-stirfry",
+      "name": "Stir-fried Pork & Vegetables",
+      "description": "Pork shoulder, frozen veggies, rice, soy sauce",
+      "protein": 40,
+      "fat": 25,
+      "carbs": 55,
+      "calories": 930,
+      "cost": 2.45,
+      "prepTime": 12,
+      "freezerFriendly": false,
+      "tags": ["one-pan"],
+      "ingredients": [
+        { "name": "Pork Shoulder", "amount": 5, "unit": "oz" },
+        { "name": "Mixed Vegetables", "amount": 1.5, "unit": "cup" },
+        { "name": "White Rice", "amount": 1, "unit": "cup" },
+        { "name": "Soy Sauce", "amount": 2, "unit": "tbsp" }
+      ],
+      "instructions": "Stir-fry pork and veggies on hot plate, serve over rice."
+    },
+    {
+      "id": "black-bean-rice-bowl",
+      "name": "Black Bean & Rice Bowl",
+      "description": "Black beans, rice, veggies, cheese",
+      "protein": 30,
+      "fat": 12,
+      "carbs": 80,
+      "calories": 810,
+      "cost": 1.80,
+      "prepTime": 5,
+      "freezerFriendly": true,
+      "tags": ["vegetarian", "best-value"],
+      "ingredients": [
+        { "name": "Black Beans", "amount": 1.5, "unit": "cup" },
+        { "name": "White Rice", "amount": 1.5, "unit": "cup" },
+        { "name": "Mixed Vegetables", "amount": 1, "unit": "cup" },
+        { "name": "Cheddar Cheese", "amount": 1, "unit": "oz" }
+      ],
+      "instructions": "Reheat beans, rice, and veggies. Top with cheese."
+    },
+    {
+      "id": "lentil-curry",
+      "name": "Lentil Curry with Rice",
+      "description": "Lentils, curry powder, coconut milk powder, rice",
+      "protein": 32,
+      "fat": 18,
+      "carbs": 75,
+      "calories": 850,
+      "cost": 2.00,
+      "prepTime": 10,
+      "freezerFriendly": true,
+      "tags": ["flavorful", "vegetarian"],
+      "ingredients": [
+        { "name": "Lentils", "amount": 1, "unit": "cup" },
+        { "name": "Curry Powder", "amount": 1, "unit": "tbsp" },
+        { "name": "White Rice", "amount": 1, "unit": "cup" },
+        { "name": "Mixed Vegetables", "amount": 0.5, "unit": "cup" }
+      ],
+      "instructions": "Reheat pre-cooked lentil curry and serve over rice."
+    },
+    {
+      "id": "omelet-potatoes",
+      "name": "Omelet with Potatoes & Cheese",
+      "description": "5 eggs, potatoes, cheddar cheese",
+      "protein": 40,
+      "fat": 30,
+      "carbs": 40,
+      "calories": 880,
+      "cost": 2.30,
+      "prepTime": 12,
+      "freezerFriendly": false,
+      "tags": ["breakfast-for-dinner"],
+      "ingredients": [
+        { "name": "Eggs", "amount": 5, "unit": "whole" },
+        { "name": "Potatoes", "amount": 1, "unit": "medium" },
+        { "name": "Cheddar Cheese", "amount": 2, "unit": "oz" }
+      ],
+      "instructions": "Cook diced potatoes, make omelet with eggs and cheese on hot plate."
+    }
+  ],
+  "snacks": [
+    {
+      "id": "hard-boiled-eggs",
+      "name": "Hard-Boiled Eggs (2)",
+      "description": "Two hard-boiled eggs",
+      "protein": 12.6,
+      "fat": 9.6,
+      "carbs": 1.4,
+      "calories": 144,
+      "cost": 0.32,
+      "prepTime": 1,
+      "tags": ["batch-prep"],
+      "ingredients": [
+        { "name": "Eggs", "amount": 2, "unit": "whole" }
+      ]
+    },
+    {
+      "id": "cottage-cheese-snack",
+      "name": "Cottage Cheese (½ cup)",
+      "description": "Half cup cottage cheese",
+      "protein": 12,
+      "fat": 3,
+      "carbs": 4,
+      "calories": 90,
+      "cost": 1.41,
+      "prepTime": 1,
+      "tags": ["high-protein"],
+      "ingredients": [
+        { "name": "Cottage Cheese", "amount": 0.5, "unit": "cup" }
+      ]
+    },
+    {
+      "id": "greek-yogurt-snack",
+      "name": "Greek Yogurt (1 cup)",
+      "description": "One cup Greek yogurt",
+      "protein": 17,
+      "fat": 0,
+      "carbs": 7,
+      "calories": 100,
+      "cost": 1.79,
+      "prepTime": 1,
+      "tags": ["highest-protein"],
+      "ingredients": [
+        { "name": "Greek Yogurt", "amount": 1, "unit": "cup" }
+      ]
+    },
+    {
+      "id": "apple-pb",
+      "name": "Apple + 2 tbsp PB",
+      "description": "Apple with peanut butter",
+      "protein": 9,
+      "fat": 16,
+      "carbs": 37,
+      "calories": 290,
+      "cost": 1.12,
+      "prepTime": 2,
+      "tags": ["sweet"],
+      "ingredients": [
+        { "name": "Apple", "amount": 1, "unit": "whole" },
+        { "name": "Peanut Butter", "amount": 2, "unit": "tbsp" }
+      ]
+    },
+    {
+      "id": "banana-pb",
+      "name": "Banana + 2 tbsp PB",
+      "description": "Banana with peanut butter",
+      "protein": 9,
+      "fat": 16,
+      "carbs": 40,
+      "calories": 300,
+      "cost": 0.60,
+      "prepTime": 2,
+      "tags": ["best-value"],
+      "ingredients": [
+        { "name": "Banana", "amount": 1, "unit": "whole" },
+        { "name": "Peanut Butter", "amount": 2, "unit": "tbsp" }
+      ]
+    },
+    {
+      "id": "cheese-stick",
+      "name": "Cheese Stick (1 oz)",
+      "description": "One ounce cheese stick",
+      "protein": 7,
+      "fat": 6,
+      "carbs": 0,
+      "calories": 110,
+      "cost": 0.69,
+      "prepTime": 0,
+      "tags": ["portable"],
+      "ingredients": [
+        { "name": "Cheddar Cheese", "amount": 1, "unit": "oz" }
+      ]
+    },
+    {
+      "id": "rice-cake-pb",
+      "name": "Rice Cake + 1 tbsp PB",
+      "description": "Rice cake with peanut butter",
+      "protein": 4,
+      "fat": 8,
+      "carbs": 15,
+      "calories": 140,
+      "cost": 0.47,
+      "prepTime": 1,
+      "tags": ["light"],
+      "ingredients": [
+        { "name": "Rice Cake", "amount": 1, "unit": "whole" },
+        { "name": "Peanut Butter", "amount": 1, "unit": "tbsp" }
+      ]
+    }
+  ]
+}

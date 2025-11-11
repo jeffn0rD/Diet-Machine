@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MealBrowser from '../components/MealBrowser';
+---
+
+<Layout title="Browse Meals - Diet Machine">
+  <main class="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-8">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-green-800 mb-2">Browse Meals</h1>
+        <p class="text-gray-600">Explore 60+ high-protein, budget-friendly meal options</p>
+      </div>
+      
+      <MealBrowser client:load />
+    </div>
+  </main>
+</Layout>
