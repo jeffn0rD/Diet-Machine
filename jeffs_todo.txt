@@ -14,12 +14,12 @@
    └─ FIXED: Unit now displays dynamically when ingredient is selected
    └─ Shows "oz", "cup", "serving", etc. next to amount input field
 
-⏳ [IN PROGRESS] Unify custom and pre-existing meals
+✅ [DONE] Unify custom and pre-existing meals
    └─ DECISION: Merge data structures - single "Meal" concept
    └─ Custom meals will appear in main meal browser alongside pre-existing ones
    └─ All meals will be editable/manipulable in the same way
 
-⏳ [TBD] Pagination for meals and ingredients
+✅ [DONE] Pagination for meals and ingredients
    └─ DECISION: Infinite scroll with frozen column headers
    └─ Page footer should remain visible without excessive scrolling
    └─ Headers stay fixed like frozen rows in Excel
@@ -71,7 +71,7 @@ HIGH PRIORITY
 MEDIUM PRIORITY
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-⏳ [TBD] Bulk ingredient pricing system
+✅ [DONE] Bulk ingredient pricing system
    └─ DESIGN: Plugin architecture for multiple store sources
    └─ CURRENT: Support walmart.com only
    └─ FUTURE: Easy to add other stores via plugins
@@ -80,13 +80,13 @@ MEDIUM PRIORITY
    └─ Set "preferred" size with dropdown selector in editor
    └─ Shopping lists show preferred size by default
 
-⏳ [TBD] Unit converter tool
+✅ [DONE] Unit converter tool
    └─ Include volume-to-weight conversions (e.g., 1 cup flour = 120g)
    └─ Common conversions: oz↔g, cup↔ml, tbsp↔tsp
    └─ Accessible from custom meal creation
    └─ Standalone tool accessible from ingredient list
 
-⏳ [TBD] Export/Import functionality
+✅ [DONE] Export/Import functionality
    └─ FORMAT: JSON
    └─ Export entire database (ingredients + meals)
    └─ Import entire database

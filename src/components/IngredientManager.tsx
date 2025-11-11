@@ -29,6 +29,7 @@ export default function IngredientManager() {
   const [editingIngredientId, setEditingIngredientId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [displayCount, setDisplayCount] = useState(50);
 
   useEffect(() => {
     // Load from localStorage or use default data
@@ -80,6 +81,18 @@ export default function IngredientManager() {
     return matchesSearch && matchesCategory;
   });
 
+  const displayedIngredients = filteredIngredients.slice(0, displayCount);
+  const hasMore = displayCount < filteredIngredients.length;
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    const scrollPercentage = (target.scrollTop + target.clientHeight) / target.scrollHeight;
+    
+    if (scrollPercentage > 0.8 && hasMore) {
+      setDisplayCount(prev => Math.min(prev + 50, filteredIngredients.length));
+    }
+  };
+
   const categories = Array.from(new Set(ingredients.map(i => i.category)));
 
   return (
@@ -119,9 +132,9 @@ export default function IngredientManager() {
           </button>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto max-h-[600px] relative" onScroll={handleScroll}>
           <table className="w-full border-collapse">
-            <thead>
+            <thead className="sticky top-0 z-10">
               <tr className="bg-gray-100 border-b-2 border-gray-300">
                 <th className="text-left p-3 font-semibold">Name</th>
                 <th className="text-left p-3 font-semibold">Category</th>
@@ -134,7 +147,7 @@ export default function IngredientManager() {
               </tr>
             </thead>
             <tbody>
-              {filteredIngredients.map(ing => (
+              {displayedIngredients.map(ing => (
                 <tr key={ing.id} className="border-b border-gray-200 hover:bg-gray-50 transition">
                   <td className="p-3 font-medium">{ing.name}</td>
                   <td className="p-3">
@@ -172,6 +185,16 @@ export default function IngredientManager() {
                   </td>
                 </tr>
               ))}
+              {hasMore && (
+                <tr>
+                  <td colSpan={8} className="p-4 text-center text-gray-500">
+                    <div className="flex items-center justify-center gap-2">
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-600"></div>
+                      Loading more ingredients...
+                    </div>
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

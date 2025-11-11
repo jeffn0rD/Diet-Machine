@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import UnitConverter from '../components/UnitConverter';
+import DataManager from '../components/DataManager';
+---
+
+<Layout title="Tools - Diet Machine">
+  <main class="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-8">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-green-800 mb-2">Tools & Utilities</h1>
+        <p class="text-gray-600">Unit converter, data management, and more</p>
+      </div>
+      
+      <div class="grid lg:grid-cols-2 gap-6">
+        <UnitConverter client:load />
+        <DataManager client:load />
+      </div>
+    </div>
+  </main>
+</Layout>

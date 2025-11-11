@@ -22,6 +22,7 @@ interface Meal {
 export default function MealBrowser() {
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'breakfasts' | 'lunches' | 'dinners' | 'snacks'>('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [displayCount, setDisplayCount] = useState(20);
   const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
   const [editingMealId, setEditingMealId] = useState<string | null>(null);
   const [showAddMeal, setShowAddMeal] = useState(false);
@@ -79,6 +80,18 @@ export default function MealBrowser() {
       meal.description?.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const displayedMeals = filteredMeals.slice(0, displayCount);
+  const hasMore = displayCount < filteredMeals.length;
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    const scrollPercentage = (target.scrollTop + target.clientHeight) / target.scrollHeight;
+    
+    if (scrollPercentage > 0.8 && hasMore) {
+      setDisplayCount(prev => Math.min(prev + 20, filteredMeals.length));
+    }
+  };
 
   const handleMealSaved = () => {
     loadAllMeals();
