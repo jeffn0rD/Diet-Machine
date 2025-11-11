@@ -9,7 +9,7 @@
 *******************************************
 * NEW FEATURES *
 
-- way to adjust daily macro targets.  Would be great if user could enter bodyweight/fat%, activity levels, fitness goals (ie strength training, gain muscle, lose weight) with targets.  Note the home page needs to update to reflect current settings.
+- way to adjust daily/weekly macro targets/goals/budget.  Would be great if user could enter bodyweight/fat%, activity levels, fitness goals (ie strength training, gain muscle, lose weight) with targets.  Note the home page needs to update to reflect current settings.
 - need a way to save a daily and weekly meal plan for recall later.  So a user can create a weekly plan by adding all the meals, then save it with a name.  Then the plan can be recalled and edited (and possibly resaved to the same or a new name).
 - need a way to edit existing ingredients and meals, a button for each item or selection mechanism and then option menu.
 - can the cheapest bulk sizes of ingredients and price be added to ingredient data?  For instance dried beans may come in a 1lb bag for a certain price, track that for grocery list creation.
