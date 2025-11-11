@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import IngredientEditor from './IngredientEditor';
 import ingredientsData from '../data/ingredients.json';
 import mealsData from '../data/meals.json';
 
@@ -16,24 +17,17 @@ interface Ingredient {
   zipcode: string;
 }
 
-interface CustomMeal {
-  id: string;
-  name: string;
-  description: string;
-  category: 'breakfast' | 'lunch' | 'dinner' | 'snack';
-  ingredients: Array<{
-    ingredientId: string;
-    amount: number;
-  }>;
+>;
   prepTime: number;
   instructions: string;
 }
 
 export default function IngredientManager() {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
-  const [customMeals, setCustomMeals] = useState<CustomMeal[]>([]);
+
   const [showAddIngredient, setShowAddIngredient] = useState(false);
-  const [showAddMeal, setShowAddMeal] = useState(false);
+  const [editingIngredientId, setEditingIngredientId] = useState<string | null>(null);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
@@ -70,14 +64,7 @@ export default function IngredientManager() {
     zipcode: '05855'
   });
 
-  const [newMeal, setNewMeal] = useState<Partial<CustomMeal>>({
-    name: '',
-    description: '',
-    category: 'breakfast',
-    ingredients: [],
-    prepTime: 5,
-    instructions: ''
-  });
+
 
   const addIngredient = () => {
     if (!newIngredient.name) return;
@@ -118,11 +105,7 @@ export default function IngredientManager() {
     });
   };
 
-  const addCustomMeal = () => {
-    if (!newMeal.name || !newMeal.ingredients || newMeal.ingredients.length === 0) return;
 
-    // Calculate totals
-    let totals = { protein: 0, fat: 0, carbs: 0, calories: 0, cost: 0 };
     newMeal.ingredients.forEach(ing => {
       const ingredient = ingredients.find(i => i.id === ing.ingredientId);
       if (ingredient) {
@@ -393,47 +376,7 @@ export default function IngredientManager() {
         </div>
       )}
 
-      {/* Custom Meals Section */}
-      <div id="custom-meals" className="bg-white rounded-xl shadow-lg p-6">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Custom Meals</h2>
-          <button
-            onClick={() => setShowAddMeal(true)}
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-semibold"
-          >
-            + Create Meal
-          </button>
-        </div>
 
-        {customMeals.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg mb-4">No custom meals yet</p>
-            <p className="text-gray-400">Create your first custom meal to get started!</p>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 gap-4">
-            {customMeals.map(meal => (
-              <div key={meal.id} className="border-2 border-gray-200 rounded-lg p-4">
-                <h3 className="font-bold text-lg mb-2">{meal.name}</h3>
-                <p className="text-sm text-gray-600 mb-3">{meal.description}</p>
-                <div className="flex gap-2 mb-3">
-                  <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-                    {meal.category}
-                  </span>
-                  <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">
-                    {meal.prepTime} min
-                  </span>
-                </div>
-                <p className="text-sm text-gray-600">
-                  {meal.ingredients.length} ingredients
-                </p>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Add Meal Modal */}
       {showAddMeal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[80vh] overflow-y-auto">

@@ -1,17 +1,60 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import mealsData from '../data/meals.json';
+import MealEditor from './MealEditor';
+
+interface Meal {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  protein: number;
+  fat: number;
+  carbs: number;
+  calories: number;
+  cost: number;
+  prepTime: number;
+  tags?: string[];
+  ingredients?: any[];
+  instructions?: string;
+  isCustom?: boolean;
+}
 
 export default function MealBrowser() {
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'breakfasts' | 'lunches' | 'dinners' | 'snacks'>('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedMeal, setSelectedMeal] = useState<any>(null);
+  const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
+  const [editingMealId, setEditingMealId] = useState<string | null>(null);
+  const [showAddMeal, setShowAddMeal] = useState(false);
+  const [allMeals, setAllMeals] = useState<Meal[]>([]);
 
-  const allMeals = [
-    ...mealsData.breakfasts.map(m => ({ ...m, category: 'Breakfast' })),
-    ...mealsData.lunches.map(m => ({ ...m, category: 'Lunch' })),
-    ...mealsData.dinners.map(m => ({ ...m, category: 'Dinner' })),
-    ...mealsData.snacks.map(m => ({ ...m, category: 'Snack' }))
-  ];
+  useEffect(() => {
+    loadAllMeals();
+  }, []);
+
+  const loadAllMeals = () => {
+    // Load pre-existing meals
+    const preMeals = [
+      ...mealsData.breakfasts.map(m => ({ ...m, category: 'Breakfast', isCustom: false })),
+      ...mealsData.lunches.map(m => ({ ...m, category: 'Lunch', isCustom: false })),
+      ...mealsData.dinners.map(m => ({ ...m, category: 'Dinner', isCustom: false })),
+      ...mealsData.snacks.map(m => ({ ...m, category: 'Snack', isCustom: false }))
+    ];
+
+    // Load custom meals
+    let customMeals: Meal[] = [];
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('customMeals');
+      if (saved) {
+        customMeals = JSON.parse(saved).map((m: any) => ({
+          ...m,
+          category: m.category.charAt(0).toUpperCase() + m.category.slice(1),
+          isCustom: true
+        }));
+      }
+    }
+
+    setAllMeals([...preMeals, ...customMeals]);
+  };
 
   const filteredMeals = allMeals.filter(meal => {
     const matchesCategory = selectedCategory === 'all' || 
@@ -21,10 +64,56 @@ export default function MealBrowser() {
     return matchesCategory && matchesSearch;
   });
 
+  const handleMealSaved = () => {
+    loadAllMeals();
+    setEditingMealId(null);
+    setShowAddMeal(false);
+    setSelectedMeal(null);
+  };
+
+  const handleDeleteMeal = (mealId: string) => {
+    if (!confirm('Are you sure you want to delete this meal?')) return;
+
+    if (typeof window !== 'undefined') {
+      const customMeals = JSON.parse(localStorage.getItem('customMeals') || '[]');
+      const updated = customMeals.filter((m: Meal) => m.id !== mealId);
+      localStorage.setItem('customMeals', JSON.stringify(updated));
+      loadAllMeals();
+      setSelectedMeal(null);
+    }
+  };
+
+  // If editing or adding, show editor
+  if (editingMealId || showAddMeal) {
+    return (
+      <MealEditor
+        mealId={editingMealId || undefined}
+        onSave={handleMealSaved}
+        onCancel={() => {
+          setEditingMealId(null);
+          setShowAddMeal(false);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="space-y-6">
-      {/* Filters */}
+      {/* Header with Add Button */}
       <div className="bg-white rounded-xl shadow-lg p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-bold text-gray-800">
+            🍽️ All Meals ({filteredMeals.length})
+          </h2>
+          <button
+            onClick={() => setShowAddMeal(true)}
+            className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 font-semibold transition"
+          >
+            ➕ Add New Meal
+          </button>
+        </div>
+
+        {/* Filters */}
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <input
@@ -58,14 +147,25 @@ export default function MealBrowser() {
         {filteredMeals.map(meal => (
           <div
             key={meal.id}
-            onClick={() => setSelectedMeal(meal)}
-            className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition cursor-pointer transform hover:-translate-y-1"
+            className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition"
           >
             <div className="flex justify-between items-start mb-3">
-              <h3 className="text-xl font-bold text-gray-800">{meal.name}</h3>
-              <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
-                {meal.category}
-              </span>
+              <h3 
+                className="text-xl font-bold text-gray-800 cursor-pointer hover:text-green-600"
+                onClick={() => setSelectedMeal(meal)}
+              >
+                {meal.name}
+              </h3>
+              <div className="flex gap-1">
+                <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
+                  {meal.category}
+                </span>
+                {meal.isCustom && (
+                  <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">
+                    Custom
+                  </span>
+                )}
+              </div>
             </div>
             
             <p className="text-gray-600 text-sm mb-4">{meal.description}</p>
@@ -89,9 +189,35 @@ export default function MealBrowser() {
               </div>
             </div>
 
-            <div className="flex justify-between items-center pt-3 border-t">
+            <div className="flex justify-between items-center pt-3 border-t mb-3">
               <span className="text-green-600 font-bold text-lg">${meal.cost.toFixed(2)}</span>
               <span className="text-gray-500 text-sm">⏱️ {meal.prepTime} min</span>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-2">
+              <button
+                onClick={() => setSelectedMeal(meal)}
+                className="flex-1 bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 text-sm font-semibold"
+              >
+                View
+              </button>
+              {meal.isCustom && (
+                <>
+                  <button
+                    onClick={() => setEditingMealId(meal.id)}
+                    className="flex-1 bg-yellow-500 text-white px-3 py-2 rounded-lg hover:bg-yellow-600 text-sm font-semibold"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDeleteMeal(meal.id)}
+                    className="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 text-sm font-semibold"
+                  >
+                    🗑️
+                  </button>
+                </>
+              )}
             </div>
 
             {meal.tags && meal.tags.length > 0 && (
@@ -194,6 +320,27 @@ export default function MealBrowser() {
                       </span>
                     ))}
                   </div>
+                </div>
+              )}
+
+              {/* Edit/Delete buttons for custom meals */}
+              {selectedMeal.isCustom && (
+                <div className="flex gap-3 pt-4 border-t">
+                  <button
+                    onClick={() => {
+                      setEditingMealId(selectedMeal.id);
+                      setSelectedMeal(null);
+                    }}
+                    className="flex-1 bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 font-semibold"
+                  >
+                    ✏️ Edit Meal
+                  </button>
+                  <button
+                    onClick={() => handleDeleteMeal(selectedMeal.id)}
+                    className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 font-semibold"
+                  >
+                    🗑️ Delete
+                  </button>
                 </div>
               )}
             </div>
