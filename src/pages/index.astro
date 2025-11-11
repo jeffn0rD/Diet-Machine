@@ -13,18 +13,55 @@ import Layout from '../layouts/Layout.astro';
         <p class="text-xl text-gray-600 mb-6">
           High-Protein, Budget-Friendly Meal Planning Made Easy
         </p>
-        <div class="flex flex-wrap justify-center gap-4 text-sm">
-          <div class="bg-white px-6 py-3 rounded-full shadow-md">
-            <span class="font-semibold text-green-700">150g+</span> Daily Protein
-          </div>
-          <div class="bg-white px-6 py-3 rounded-full shadow-md">
-            <span class="font-semibold text-blue-700">$95-100</span> Weekly Budget
-          </div>
-          <div class="bg-white px-6 py-3 rounded-full shadow-md">
-            <span class="font-semibold text-purple-700">60+</span> Meal Options
-          </div>
+        <div id="user-targets" class="flex flex-wrap justify-center gap-4 text-sm">
+          <!-- Dynamic targets will be loaded here -->
         </div>
+        <a href="/settings" class="inline-block mt-4 text-green-600 hover:text-green-700 font-semibold text-sm">
+          ⚙️ Adjust Your Targets
+        </a>
       </div>
+
+      <script>
+        // Load and display user settings
+        function loadUserTargets() {
+          const defaultSettings = {
+            dailyProtein: 150,
+            dailyCarbs: 300,
+            dailyFat: 90,
+            dailyCalories: 2700,
+            weeklyBudget: 100
+          };
+          
+          const saved = localStorage.getItem('userSettings');
+          const settings = saved ? JSON.parse(saved) : defaultSettings;
+          
+          const targetsDiv = document.getElementById('user-targets');
+          if (targetsDiv) {
+            targetsDiv.innerHTML = `
+              <div class="bg-white px-6 py-3 rounded-full shadow-md">
+                <span class="font-semibold text-red-700">${settings.dailyProtein}g</span> Daily Protein
+              </div>
+              <div class="bg-white px-6 py-3 rounded-full shadow-md">
+                <span class="font-semibold text-yellow-700">${settings.dailyCarbs}g</span> Daily Carbs
+              </div>
+              <div class="bg-white px-6 py-3 rounded-full shadow-md">
+                <span class="font-semibold text-purple-700">${settings.dailyFat}g</span> Daily Fat
+              </div>
+              <div class="bg-white px-6 py-3 rounded-full shadow-md">
+                <span class="font-semibold text-blue-700">${settings.dailyCalories}</span> Daily Calories
+              </div>
+              <div class="bg-white px-6 py-3 rounded-full shadow-md">
+                <span class="font-semibold text-green-700">$${settings.weeklyBudget}</span> Weekly Budget
+              </div>
+            `;
+          }
+        }
+        
+        // Load on page load
+        if (typeof window !== 'undefined') {
+          loadUserTargets();
+        }
+      </script>
 
       <!-- Navigation Cards -->
       <div class="grid md:grid-cols-3 gap-6 mb-12">
