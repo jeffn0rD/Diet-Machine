@@ -31,8 +31,8 @@
 	✅ [DONE] Remove 'Custom Meals' references - unified meal concept implemented
 	✅ [DONE] Add/edit meals through web interface - MealEditor component created
 	✅ [DONE] Ingredient editor with unit dropdown - IngredientEditor with bulk pricing
-	⏳ [IN PROGRESS] Visual indicators for incomplete days in meal planner
-	⏳ [IN PROGRESS] Clickable links from meals/ingredients to editors
+	✅ [DONE] Visual indicators for incomplete days in meal planner
+	✅ [DONE] Clickable links from meals/ingredients to editors
 	
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 HIGH PRIORITY
