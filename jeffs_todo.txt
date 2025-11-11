@@ -57,12 +57,12 @@ HIGH PRIORITY
    └─ Delete unwanted plans
    └─ Integrated into meal planner page
 
-⏳ [TBD] Edit existing ingredients and meals
+✅ [DONE] Edit existing ingredients and meals
    └─ Add edit button/menu for each item
    └─ Modal with form pre-populated with current data
    └─ Apply to both ingredients and meals
 
-⏳ [TBD] Inline ingredient creation in meal form
+✅ [DONE] Inline ingredient creation in meal form
    └─ Add "+ New Ingredient" button within meal creation form
    └─ Opens inline form without canceling meal creation
    └─ Keep existing "+ Add Ingredient" button as well
